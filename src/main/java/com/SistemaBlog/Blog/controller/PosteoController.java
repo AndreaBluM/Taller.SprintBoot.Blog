@@ -3,10 +3,10 @@ package com.SistemaBlog.Blog.controller;
 import com.SistemaBlog.Blog.model.Posteo;
 import com.SistemaBlog.Blog.service.IservicePosteo;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 public class PosteoController {
@@ -24,13 +24,23 @@ public class PosteoController {
     }
 
     @GetMapping("/posteos/{id}")
-    public Posteo getPosteoById(@PathVariable Long id) {
+    public Optional<Posteo> getPosteoById(@PathVariable Long id) {
         return servicePosteo.obtenerPosteoPorId(id);
     }
 
     @PostMapping("/posteos/crear")
     public void createPosteo( @RequestBody Posteo posteo) {
         servicePosteo.guardarPosteo(posteo);
+    }
+
+    @PostMapping("/posteos/editar")
+    public void updatePosteo( @RequestBody Posteo posteo) {
+        servicePosteo.actualizarPosteo(posteo);
+    }
+
+    @DeleteMapping("/posteos/eliminar/{id}")
+    public void deletePosteo(@PathVariable Long id) {
+        servicePosteo.eliminarPosteo(id);
     }
 
 }
