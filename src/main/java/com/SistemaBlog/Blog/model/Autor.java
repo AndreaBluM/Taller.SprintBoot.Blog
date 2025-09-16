@@ -1,5 +1,6 @@
 package com.SistemaBlog.Blog.model;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 
 import java.util.ArrayList;
@@ -13,6 +14,7 @@ public class Autor {
     private String nombre;
     private String email;
 
+    @JsonManagedReference
     @OneToMany(mappedBy = "autor", cascade = CascadeType.ALL)
     private List<Posteo> posteos = new ArrayList<>();
 

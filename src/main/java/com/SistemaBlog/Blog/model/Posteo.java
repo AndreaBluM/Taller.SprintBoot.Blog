@@ -1,5 +1,7 @@
 package com.SistemaBlog.Blog.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 
 import java.util.ArrayList;
@@ -12,6 +14,7 @@ public class Posteo {
     private Long id;
     private String titulo;
 
+    @JsonBackReference
     @ManyToOne
     @JoinColumn(name = "autor_id")
     private Autor autor;
