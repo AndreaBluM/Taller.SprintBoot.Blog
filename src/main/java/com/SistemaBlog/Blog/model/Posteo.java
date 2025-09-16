@@ -1,9 +1,9 @@
 package com.SistemaBlog.Blog.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class Posteo {
@@ -11,15 +11,22 @@ public class Posteo {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String titulo;
-    private String autor;
+
+    @ManyToOne
+    @JoinColumn(name = "autor_id")
+    private Autor autor;
+
+    @OneToMany(mappedBy = "posteo", cascade = CascadeType.ALL)
+    private List<Comentario> comentarios = new ArrayList<>();
 
     public Posteo() {
     }
 
-    public Posteo(Long id, String titulo, String autor) {
+    public Posteo(Long id, String titulo, Autor autor, List<Comentario> comentarios) {
         this.id = id;
         this.titulo = titulo;
         this.autor = autor;
+        this.comentarios = comentarios;
     }
 
     public Long getId() {
@@ -38,11 +45,19 @@ public class Posteo {
         this.titulo = titulo;
     }
 
-    public String getAutor() {
+    public Autor getAutor() {
         return autor;
     }
 
-    public void setAutor(String autor) {
+    public void setAutor(Autor autor) {
         this.autor = autor;
+    }
+
+    public List<Comentario> getComentarios() {
+        return comentarios;
+    }
+
+    public void setComentarios(List<Comentario> comentarios) {
+        this.comentarios = comentarios;
     }
 }

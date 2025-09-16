@@ -10,6 +10,6 @@ public interface IservicePosteo {
     Optional<Posteo> obtenerPosteoPorId(Long id);
     void guardarPosteo(Posteo posteo);
     void eliminarPosteo(Long id);
-    void actualizarPosteo(Posteo posteo);
+    void actualizarPosteo(Long id, Posteo posteoActualizado);
 
 }

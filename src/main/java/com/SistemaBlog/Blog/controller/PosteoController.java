@@ -35,7 +35,7 @@ public class PosteoController {
 
     @PostMapping("/posteos/editar")
     public void updatePosteo( @RequestBody Posteo posteo) {
-        servicePosteo.actualizarPosteo(posteo);
+        servicePosteo.actualizarPosteo(posteo.getId(), posteo);
     }
 
     @DeleteMapping("/posteos/eliminar/{id}")

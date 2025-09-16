@@ -34,11 +34,14 @@ public class ServicePosteo implements IservicePosteo{
 
     @Override
     public void eliminarPosteo(Long id) {
-
+        iposteoRepository.deleteById(id);
     }
 
     @Override
-    public void actualizarPosteo(Posteo posteo) {
-
+    public void actualizarPosteo(Long id, Posteo posteoActualizado) {
+        posteoActualizado.setId(id);
+        iposteoRepository.save(posteoActualizado);
     }
+
+
 }
